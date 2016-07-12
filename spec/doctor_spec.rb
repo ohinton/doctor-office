@@ -3,15 +3,15 @@ require ('spec_helper')
 describe(Doctor) do
   describe ('#name') do
     it ('tells you the doctors name') do
-      test_doctor = Doctor.new({:name => 'Dr. Love', :specialty => 'Family', :id => nil})
+      test_doctor = Doctor.new({:name => 'Dr. Love', :specialty_id => nil, :id => nil})
       expect(test_doctor.name()).to(eq('Dr. Love'))
     end
   end
 
-  describe('#specialty') do
-    it('tells you the doctors specialty') do
-      test_doctor = Doctor.new({:name => 'Dr. Love', :id => nil, :specialty => 'Family'})
-      expect(test_doctor.specialty()).to(eq('Family'))
+  describe('#specialty_id') do
+    it('tells you the doctors specialty id') do
+      test_doctor = Doctor.new({:name => 'Dr. Love', :id => nil, :specialty_id => 1})
+      expect(test_doctor.specialty_id()).to(eq(1))
     end
   end
 
@@ -23,7 +23,7 @@ describe(Doctor) do
 
   describe('#save') do
     it('will save the doctor info') do
-      test_doctor = Doctor.new({:name => 'Dr. Love', :id => nil, :specialty => 'Family'})
+      test_doctor = Doctor.new({:name => 'Dr. Love', :id => nil, :specialty_id => 1})
       test_doctor.save()
       expect(Doctor.all()).to(eq([test_doctor]))
     end
@@ -31,7 +31,7 @@ describe(Doctor) do
 
   describe('#patients_doctor_assignment') do
     it('will display a list of patients assigned to a particular doctor') do
-      test_doctor = Doctor.new({:name => 'Dr. Love', :id => nil, :specialty => 'Family'})
+      test_doctor = Doctor.new({:name => 'Dr. Love', :id => nil, :specialty_id => 1})
       test_doctor.save
       patient1 = Patient.new({:name => 'Bob', :birthday => '1991-01-01', :doctor_id => test_doctor.id()})
       patient1.save()
