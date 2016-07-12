@@ -40,4 +40,17 @@ describe(Doctor) do
       expect(test_doctor.patients_doctor_assignment()).to(eq([patient1, patient2]))
     end
   end
+
+  describe('.doctor_list_alpha') do
+    it('will return an alphabetical list of doctors') do
+      test_doctor = Doctor.new({:name => 'Dr. Matthews', :id => nil, :specialty_id => 1})
+      test_doctor.save()
+      test_doctor2 = Doctor.new({:name => 'Dr. Jones', :id => nil, :specialty_id => 2})
+      test_doctor2.save()
+      expect(Doctor.doctor_list_alpha()).to(eq([test_doctor2, test_doctor]))
+    end
+  end
+
+
+
 end

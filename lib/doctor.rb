@@ -40,4 +40,16 @@ class Doctor
     patients_list
   end
 
+  define_singleton_method(:doctor_list_alpha) do
+    doctor_list = []
+    returned_doctor_list = DB.exec("SELECT * FROM doctors ORDER BY name;")
+    returned_doctor_list.each() do |doctor|
+      name = doctor.fetch("name")
+      specialty_id = doctor.fetch("specialty_id").to_i()
+      id = doctor.fetch("id").to_i()
+      doctor_list.push(Doctor.new({:name => name, :specialty_id => specialty_id, :id => id}))
+    end
+    doctor_list
+  end
+
 end
