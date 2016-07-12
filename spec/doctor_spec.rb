@@ -51,6 +51,19 @@ describe(Doctor) do
     end
   end
 
+  describe('#number_of_patients') do
+    it('will return the number of patients each doctor has') do
+      test_doctor = Doctor.new({:name => 'Dr. Matthews', :id => nil, :specialty_id => 1})
+      test_doctor.save()
+      patient1 = Patient.new({:name => 'Bob', :birthday => '1991-01-01', :doctor_id => test_doctor.id()})
+      patient1.save()
+      patient2 = Patient.new({:name => 'Jill', :birthday => '1992-02-02', :doctor_id => test_doctor.id()})
+      patient2.save()
+      patient3 = Patient.new({:name => 'Brad', :birthday => '1992-02-02', :doctor_id => 4})
+      patient3.save()
+      expect(test_doctor.number_of_patients()).to(eq(2))
+    end
+  end
 
 
 end

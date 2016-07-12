@@ -52,4 +52,9 @@ class Doctor
     doctor_list
   end
 
+  define_method(:number_of_patients) do
+    number_of_patients = DB.exec("SELECT COUNT (doctor_id) FROM patients WHERE doctor_id = #{self.id()};")
+    number_of_patients = number_of_patients.first.fetch('count').to_i()
+  end
+
 end
